@@ -32,5 +32,20 @@
   		<artifactId>jackson-mapper-asl</artifactId>
   		<version>1.9.13</version>
   	</dependency>
+	<dependency>
+		<groupId>com.google.cloud</groupId>
+		<artifactId>google-cloud-bigquery</artifactId>
+		<version>1.23.0</version>
+	</dependency>
+	<dependency>
+		<groupId>net.bramp.ffmpeg</groupId>
+		<artifactId>ffmpeg</artifactId>
+		<version>0.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>19.0</version>
+	</dependency>
   </dependencies>
 </project>
