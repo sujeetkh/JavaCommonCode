@@ -3,7 +3,7 @@ package in.iisc.csa.sujeet.common.utils;
 import java.sql.Timestamp;
 
 public class TimestampExamples {
-//LocalDateTime functions
+	// LocalDateTime functions
 	public static void initializationWithLongNumber() {
 		Timestamp ts = new Timestamp(1509348357300l);
 		System.out.println(ts);
