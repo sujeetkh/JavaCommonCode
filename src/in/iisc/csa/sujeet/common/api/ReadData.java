@@ -8,6 +8,7 @@ import java.net.URL;
 import javax.ws.rs.core.MediaType;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
@@ -18,7 +19,7 @@ import in.iisc.csa.sujeet.common.pojo.LogType;
 
 public class ReadData {
 
-	public static void printAsString(String url) throws Exception {
+	public static void printAsStringPostRequest(String url) throws Exception {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		HttpParams params = httpClient.getParams();
 		HttpConnectionParams.setConnectionTimeout(params, 10000);
@@ -41,6 +42,29 @@ public class ReadData {
 		System.out.println(result.toString());
 	}
 
+	public static void printAsStringGetRequest(String url) throws Exception {
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpParams params = httpClient.getParams();
+		HttpConnectionParams.setConnectionTimeout(params, 10000);
+		HttpConnectionParams.setSoTimeout(params, 10000);
+
+		URI uri;
+		uri = new URI(url);
+		HttpGet post = new HttpGet(uri);
+		post.setHeader("Content-Type", MediaType.TEXT_PLAIN);
+
+		HttpResponse response = httpClient.execute(post);
+
+		BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+
+		StringBuffer result = new StringBuffer();
+		String line = "";
+		while ((line = rd.readLine()) != null) {
+			result.append(line);
+		}
+		System.out.println(result.toString());
+	}
+
 	public static void readIntoClass(String urlString) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		URL url = new URL(urlString);
@@ -50,8 +74,8 @@ public class ReadData {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String url = "";
-		readIntoClass(url);
+		String url = "http://analytics.hike.in/job_completed/hive_only_user_homescreen_activity_long_table-2018-04-25-14-30";
+		printAsStringGetRequest(url);
 
 	}
 }
